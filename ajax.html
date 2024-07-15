@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax使用</title>
+</head>
+<body>
+    <p class="data"></p>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        axios({
+            url: 'http://127.0.0.1:5000/api/getProvince'
+        }).then(result => {
+            console.log(result.data.list)
+            document.querySelector('.data').innerHTML = result.data.list.join('<br>')
+
+        })
+    </script>
+</body>
+</html>
