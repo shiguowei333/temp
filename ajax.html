@@ -7,6 +7,7 @@
 </head>
 <body>
     <p class="data"></p>
+    <p class="city"></p>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         axios({
@@ -15,6 +16,16 @@
             console.log(result.data.list)
             document.querySelector('.data').innerHTML = result.data.list.join('<br>')
 
+        })
+
+        axios({
+            url: 'http://127.0.0.1:5000/api/getCities',
+            params: {
+                province: '山西'
+            }
+        }).then(result => {
+            console.log(result.data)
+            document.querySelector('.city').innerHTML = result.data.list.join('<br>')
         })
     </script>
 </body>

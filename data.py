@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify,request
 from flask_cors import CORS
 
 
@@ -17,5 +17,26 @@ def get_data():
         ]
     }
     return jsonify(data)
+
+# 假设这是从数据库或文件加载的数据
+provinces_data = {
+    '河北': ['石家庄市', '唐山市', '秦皇岛市', '邯郸市', '邢台市', '保定市', '张家口市', '承德市', '沧州市', '廊坊市', '衡水市'],
+    '山西': ['太原市', '大同市', '阳泉市', '长治市', '晋城市', '朔州市', '晋中市', '运城市', '忻州市', '临汾市', '吕梁市'],
+    # ... 更多省份
+}
+@app.route('/api/getCities', methods=['GET'])
+def get_cities():
+    province_name = request.args.get('province')
+    if province_name in provinces_data:
+        cities = provinces_data[province_name]
+        data = {
+        "message": "获取城市成功",
+        "status": "success",
+        "list": cities
+    }
+        return jsonify(data)
+    else:
+        return jsonify({"error": "Province not found"}), 404
+
 if __name__ == '__main__':
     app.run(debug=True)
