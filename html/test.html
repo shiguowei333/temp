@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Data() {
+            a = this.a
+        }
+
+        data = new Data()
+        console.log(data)
+        console.log(data.__proto__  === Data.prototype)
+    </script>
+</body>
+</html>

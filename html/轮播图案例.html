@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title>test</title>
+        <style>
+            .outer {
+                width: 1920px;
+                height: 1180px;
+                border: 1px solid #000;
+                margin: 20px auto;
+            }
+            .top {
+                width: 1920px;
+                height: 1080px;
+                border: 1px solid #000;
+                background-image: url(../pic/1.jpg);
+                background-size: 100% 100%;
+            }
+            li {
+                float: left;
+                list-style: none;
+            }
+            ul {
+                float: left;
+            }
+            .clearfloat {
+                clear: both;
+            }
+            /* 单个小圆点的基本样式 */
+            .dot {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%; /* 形成圆形 */
+              background-color: #ccc; /* 默认颜色 */
+              margin: 0 5px; /* 圆点间的间距 */
+              cursor: pointer; /* 鼠标悬停时显示指针 */
+              transition: background-color 0.3s; /* 平滑过渡效果 */
+            }
+
+            /* 激活状态的圆点样式 */
+            .dot.active {
+              background-color: #000; /* 激活时的颜色，例如黑色 */
+            }
+            .left,.right {
+                float: right;
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                background-color: skyblue;
+                line-height: 50px;
+                margin-right: 20px;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="outer">
+            <div class="top"></div>
+            <div class="bottom">
+                <ul>
+                    <li class="dot active" data-num="0"></li>
+                    <li class="dot" data-num="1"></li>
+                    <li class="dot" data-num="2"></li>
+                    <li class="dot" data-num="3"></li>
+                    <li class="dot" data-num="4"></li>
+                    <li class="dot" data-num="5"></li>
+                    <li class="dot" data-num="6"></li>
+                    <li class="dot" data-num="7"></li>
+                    <li class="dot" data-num="8"></li>
+                    <div class="clearfloat"></div>
+                </ul>
+                <div class="right">右</div>
+                <div class="left">左</div>
+            </div>
+        </div>
+        <script>
+            let num = 0
+            let timer = setInterval(function(){
+                document.querySelectorAll('.dot')[num].classList.remove('active')
+                num ++
+                if(num >= 9) {
+                    num = 0
+                }    
+                document.querySelector('.top').style.backgroundImage = `url(../pic/${num+1}.jpg)`
+                document.querySelectorAll('.dot')[num].classList.add('active')
+                
+            }, 1000)
+
+            document.querySelector('.top').addEventListener('mouseleave', function(){
+                timer = setInterval(function(){
+                document.querySelectorAll('.dot')[num].classList.remove('active')
+                num ++
+                if(num >= 9) {
+                    num = 0
+                }    
+                document.querySelector('.top').style.backgroundImage = `url(../pic/${num+1}.jpg)`
+                document.querySelectorAll('.dot')[num].classList.add('active')
+                
+            }, 1000)
+            })
+
+            document.querySelector('.top').addEventListener('mouseenter', function(){
+                clearInterval(timer)
+            })
+
+            document.querySelector('.right').addEventListener('click', function(){
+                document.querySelectorAll('.dot')[num].classList.remove('active')
+                num < 8? num++:num = 0
+                document.querySelector('.top').style.backgroundImage = `url(../pic/${num+1}.jpg)`
+                document.querySelectorAll('.dot')[num].classList.add('active')
+            })
+            document.querySelector('.left').addEventListener('click', function(){
+                document.querySelectorAll('.dot')[num].classList.remove('active')
+                num > 0? num--:num = 8
+                document.querySelector('.top').style.backgroundImage = `url(../pic/${num+1}.jpg)`
+                document.querySelectorAll('.dot')[num].classList.add('active')
+            })
+            li_list = document.querySelectorAll('li')
+            for(let i = 0; i < li_list.length; i++){
+                li_list[i].addEventListener('click',function(){
+                    document.querySelectorAll('.dot')[num].classList.remove('active')
+                    num = Number(this.dataset.num)
+                    document.querySelector('.top').style.backgroundImage = `url(../pic/${num+1}.jpg)`
+                    document.querySelectorAll('.dot')[num].classList.add('active')
+                })
+            }
+
+        </script>
+    </body>
+</html>

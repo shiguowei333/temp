@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title>test</title>
+        <style>
+            * {
+                font-family: Arial;
+                font-size: 14px;
+                margin: 0;
+                padding: 0;
+                border: none;
+            }
+            a {
+                text-decoration: none;
+            }
+            ul {
+                list-style: none;
+            }
+            html,body {
+                width: 100%;
+                height: 100%;
+            }
+            body {
+                background-image: url(../pic/bg.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .page-header {
+                height: 70px;
+                background-color: rgba(0, 0, 0, 0.7);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 20px;
+            }
+            ul {
+                display: flex;
+            }
+            .test a {
+                color: white;
+                font-size: 20px;
+                border: 1px solid white;
+                border-radius: 8px;
+                padding: 10px;
+                margin-left: 20px;
+            }
+            .content-nav {
+                height: 300px;
+                width: 1000px;
+                margin: auto;
+            }
+            .page-content {
+                display: flex;
+                height: calc(100vh - 70px);
+            }
+            .item {
+                width: 180px;
+                height: 200px;
+                background-color: orange;
+                transition: 0.2s linear;
+            }
+            .item:hover {
+                box-shadow: 0px 0px 20px black;
+                cursor: pointer;
+            }
+            .page-content ul {
+                height: 300px;
+                justify-content: space-around;
+                align-items: center;
+            }
+            .item a {
+                height: 200px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+            }
+            .item a span {
+                font-size: 20px;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="page-header">
+            <a href="#">
+                <img src="../pic/logo.png" alt="logo">
+            </a>
+            <ul>
+                <li class="test" ><a href="#">国内校区</a></li>
+                <li class="test" ><a href="#">缅甸校区</a></li>
+                <li class="test" ><a href="#">非洲校区</a></li>
+                <li class="test" ><a href="#">欧洲校区</a></li>
+            </ul>
+        </header>
+        <div class="page-content">
+            <div class="content-nav">
+                <ul>
+                    <li class="item" style="background-color: aqua;" ><a href="#"><img src="../pic/item1.png" alt=""><span>我的邮箱</span></a></li>
+                    <li class="item" style="background-color: rgb(255, 187, 0);" ><a href="#"><img src="../pic/item2.png" alt=""><span>云服务</span></a></li>
+                    <li class="item" style="background-color: rgb(100, 30, 158);" ><a href="#"><img src="../pic/item3.png" alt=""><span>手机课堂</span></a></li>
+                    <li class="item" style="background-color: rgb(189, 52, 86);" ><a href="#"><img src="../pic/item4.png" alt=""><span>微信服务</span></a></li>
+                    <li class="item" style="background-color: rgb(78, 173, 54);" ><a href="#"><img src="../pic/item5.png" alt=""><span>在线客服</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

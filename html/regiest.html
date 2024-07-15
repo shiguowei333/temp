@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            width: 800px;
+            margin: 200px auto;
+            background-color: aquamarine;
+            overflow: hidden;
+        }
+        div {
+            margin: 50px;
+        }
+        .button {
+            text-align: center;
+        }
+        span {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+     <form action="#" method="get">
+        <div>用户名：<input type="text" name="username" class="uname"><span></span></div>
+        <div>手机号：<input type="tel" name="tel" class="tel"><span></span></div>
+        <div class="demo">短信验证码：<input type="text" name="ver" class="ver"><button class="verbutton">发送验证码</button><span></span></div>
+        <div>密码：<input type="password" name="password" class="pwd"><span></span></div>
+        <div>密码：<input type="password" name="checkpwd" class="pwdcheck"><span></span></div>
+        <div><input type="checkbox" name="protocal" class="protocal">已阅读并同意《用户服务协议》</div>
+        <div class="button"><input type="submit" value="下一步"></div>
+     </form>
+     <script>
+        const verbutton = document.querySelector('.verbutton')
+        verbutton.addEventListener('click',function(){
+            verbutton.disabled = true
+            let i = 20
+            verbutton.innerHTML = `${i}秒后重新获取`
+            const time = setInterval(function(){
+                i--
+                verbutton.innerHTML = `${i > 9 ? i : '0' + i}秒后重新获取`
+                if(i === 0) {
+                    clearInterval(time)
+                    verbutton.disabled = false
+                    verbutton.innerHTML = '重新发送'
+                }
+            },1000)
+        })
+       
+        function usernameCheck() {
+            const usernameReg = /^[a-zA-Z0-9]{6,10}$/
+            msgSpan = document.querySelector('.uname+span')
+            if(usernameReg.test(document.querySelector('.uname').value)) {
+                msgSpan.innerHTML = ''
+                return true
+            }else {
+                msgSpan.innerHTML = '请输入正确的用户名'
+                return false
+            }
+        }
+
+        function telCheck() {
+            tel = document.querySelector('.tel')
+            const telReg = /^(13[0-9]|14[5-9]|15[0-3,5-9]|16[2,5,6,7]|17[0-8,9]|18[0-9]|19[0-3,5-9])\d{8}$/
+            msgSpan = tel.nextElementSibling
+            if(telReg.test(tel.value)) {
+                msgSpan.innerHTML = ''
+                return true
+            }else {
+                msgSpan.innerHTML = '请输入正确的手机号'
+                return false
+            }
+        }
+
+        function verCheck() {
+            ver = document.querySelector('.ver')
+            const verReg = /^\d{4}$/
+            msgSpan = ver.nextElementSibling.nextElementSibling
+            if(verReg.test(ver.value)) {
+                msgSpan.innerHTML = ''
+                return true
+            }else {
+                msgSpan.innerHTML = '请输入正确的验证码'
+                return false
+            }
+        }
+
+        function pwdCheck() {
+            pwd = document.querySelector('.pwd')
+            const pwdReg = /^[a-zA-Z0-9]{6,20}$/
+            msgSpan = pwd.nextElementSibling
+            if(pwdReg.test(pwd.value)) {
+                msgSpan.innerHTML = ''
+                return true
+            }else {
+                msgSpan.innerHTML = '请输入正确的密码'
+                return false
+            }
+        }
+
+        function pckCheck() {
+            pck = document.querySelector('.pwdcheck')
+            const pckReg = /^[a-zA-Z0-9]{6,20}$/
+            msgSpan = pck.nextElementSibling
+            if(pck.value === document.querySelector('.pwd').value) {
+                msgSpan.innerHTML = ''
+                return true
+            }else {
+                msgSpan.innerHTML = '两次密码输入不一致'
+                return false
+            }
+        }
+
+        function protocalCheck() {
+            protocal = document.querySelector('.protocal')
+            return protocal.checked
+        }
+
+        document.querySelector('.uname').addEventListener('change',usernameCheck)
+        document.querySelector('.tel').addEventListener('change',telCheck)
+        document.querySelector('.ver').addEventListener('change',verCheck)
+        document.querySelector('.pwd').addEventListener('change',pwdCheck)
+        document.querySelector('.pwdcheck').addEventListener('change',pckCheck)
+        document.querySelector('form').addEventListener('submit',function(e){
+            if(!protocalCheck()) {
+                alert('请勾选用户服务协议')
+                e.preventDefault()
+            }
+            if(!usernameCheck()) e.preventDefault()
+            if(!telCheck()) e.preventDefault()
+            if(!verCheck()) e.preventDefault()
+            if(!pwdCheck()) e.preventDefault()
+            if(!pckCheck()) e.preventDefault()
+        })
+
+     </script>
+</body>
+</html>
