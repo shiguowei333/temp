@@ -1,5 +1,6 @@
 from flask import Flask, jsonify,request
 from flask_cors import CORS
+import random
 
 
 app = Flask(__name__)
@@ -39,17 +40,17 @@ def get_cities():
         return jsonify({"error": "Province not found"}), 404
     
 book_list = [{
-    'id': 84732,
+    'id': '84732',
     'bookname': '西游记',
     'author': '吴承恩',
     'publisher': '人民文学出版社'
 },{
-    'id': 84731,
+    'id': '84731',
     'bookname': '三国演义',
     'author': '罗贯中',
     'publisher': '人民文学出版社'
 },{
-    'id': 84730,
+    'id': '84730',
     'bookname': '水浒传',
     'author': '施耐庵',
     'publisher': '人民文学出版社'
@@ -59,6 +60,20 @@ book_list = [{
 def get_books():
     return jsonify(book_list)
 
+i = 84730
+@app.route('/api/addBook', methods=['POST'])
+def add_book():
+    i = str(random.randint(0,99999)).zfill(5)
+    bookname = request.form.get('bookname')
+    author = request.form.get('author')
+    publisher = request.form.get('publisher')
+    book_list.append({
+        'id': i,
+        'bookname': bookname,
+        'author': author,
+        'publisher': publisher
+    })
+    return jsonify({'status':200})
 
 if __name__ == '__main__':
     app.run(debug=True)
