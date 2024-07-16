@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 1500px;
+            margin: 0 auto;
+        }
+        .table tbody td span:first-child {
+            color: orange;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        .table tbody td span:nth-child(2) {
+            color: red;
+            cursor: pointer;
+        }
+        .nullPage {
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="margin-top: 200px;margin-bottom: 10px;font-weight: bold;">
+            <span style="font-size: 25px;">图书管理</span>
+            <button type="button" class="btn btn-primary" style="float: right;">新增</button>
+        </div>
+        <table class="table table-bordered" style="text-align: center;">
+            <thead>
+              <tr class="table-secondary">
+                <th scope="col">序号</th>
+                <th scope="col">书名</th>
+                <th scope="col">作者</th>
+                <th scope="col">出版社</th>
+                <th scope="col">操作</th>
+              </tr>
+            </thead>
+            <tbody class="table-striped bookList">
+            </tbody>
+          </table>
+          <div class="nullPage">暂无数据</div>
+    </div>
+    <div class="modal fade add-modal">
+
+    </div>
+    <div class="modal fade edit-modal">
+
+    </div>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function showList() {
+            axios({
+            url: 'http://127.0.0.1:5000/api/getBooks'
+        }).then(response => {
+            console.log(response.data)
+            if(response.data.length === 0) {
+                console.dir(document.querySelector('.nullPage'))
+                document.querySelector('.nullPage').style.display = 'block'
+                
+                return
+            }
+            const htmlStr = response.data.map((item, index) => {
+                return `<tr>
+                    <th scope="row">${index + 1}</th>
+                    <td >${item.bookname}</td>
+                    <td>${item.author}</td>
+                    <td >${item.publisher}</td>
+                    <td><span class='del'>编辑</span><span class='edit'>删除</span></td>
+                </tr>`
+            })
+            console.log(htmlStr)
+            document.querySelector('.bookList').innerHTML = htmlStr.join('')
+        })
+        }
+        showList()
+    </script>
+</body>
+</html>
