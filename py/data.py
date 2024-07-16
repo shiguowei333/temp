@@ -37,6 +37,28 @@ def get_cities():
         return jsonify(data)
     else:
         return jsonify({"error": "Province not found"}), 404
+    
+book_list = [{
+    'id': 84732,
+    'bookname': '西游记',
+    'author': '吴承恩',
+    'publisher': '人民文学出版社'
+},{
+    'id': 84731,
+    'bookname': '三国演义',
+    'author': '罗贯中',
+    'publisher': '人民文学出版社'
+},{
+    'id': 84730,
+    'bookname': '水浒传',
+    'author': '施耐庵',
+    'publisher': '人民文学出版社'
+}]
+
+@app.route('/api/getBooks', methods=['GET'])
+def get_books():
+    return jsonify(book_list)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
