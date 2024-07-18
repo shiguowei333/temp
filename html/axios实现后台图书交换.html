@@ -29,7 +29,7 @@
     <div class="container">
         <div style="margin-top: 200px;margin-bottom: 10px;font-weight: bold;">
             <span style="font-size: 25px;">图书管理</span>
-            <button type="button" class="btn btn-primary" style="float: right;">新增</button>
+            <button type="button" class="btn btn-primary" style="float: right;" data-bs-toggle="modal" data-bs-target=".add-modal">新增</button>
         </div>
         <table class="table table-bordered" style="text-align: center;">
             <thead>
@@ -47,10 +47,64 @@
           <div class="nullPage">暂无数据</div>
     </div>
     <div class="modal fade add-modal">
-
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">新增图书</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                      <label for="exampleInputbookname" class="form-label">书名</label>
+                      <input type="text" class="form-control" id="exampleInputpublisher" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputauthor" class="form-label">作者</label>
+                      <input type="text" class="form-control" id="exampleInputpublisher">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputpublisher" class="form-label">出版社</label>
+                        <input type="text" class="form-control" id="exampleInputpublisher">
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">确定</button>
+              </div>
+            </div>
+          </div>
     </div>
     <div class="modal fade edit-modal">
-
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">编辑图书</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                      <label for="exampleInputbookname" class="form-label">书名</label>
+                      <input type="text" class="form-control" id="exampleInputpublisher" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputauthor" class="form-label">作者</label>
+                      <input type="text" class="form-control" id="exampleInputpublisher">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputpublisher" class="form-label">出版社</label>
+                        <input type="text" class="form-control" id="exampleInputpublisher">
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">确定</button>
+              </div>
+            </div>
+          </div>
     </div>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
