@@ -64,9 +64,10 @@ i = 84730
 @app.route('/api/addBook', methods=['POST'])
 def add_book():
     i = str(random.randint(0,99999)).zfill(5)
-    bookname = request.form.get('bookname')
-    author = request.form.get('author')
-    publisher = request.form.get('publisher')
+    data = request.get_json()
+    bookname = data['bookname']
+    author = data['author']
+    publisher = data['publisher']
     book_list.append({
         'id': i,
         'bookname': bookname,
