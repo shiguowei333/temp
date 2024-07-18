@@ -75,5 +75,36 @@ def add_book():
     })
     return jsonify({'status':200})
 
+@app.route('/api/deleteBook', methods=['GET'])
+def delete_book():
+    id = request.args.get('id')
+    
+    for i in range(len(book_list)):
+        if(book_list[i]['id'] == id):
+            del book_list[i]
+            break
+    
+    return jsonify({'status':200})
+
+
+@app.route('/api/updateBook', methods=['POST'])
+def update_book():
+
+    data = request.get_json()
+    id = data['id']
+    bookname = data['bookname']
+    author = data['author']
+    publisher = data['publisher']
+    for i in range(len(book_list)):
+        if(book_list[i]['id'] == id):
+            book_list[i]['bookname'] = bookname
+            book_list[i]['author'] = author
+            book_list[i]['publisher'] = publisher
+            break
+    print(book_list)
+    return jsonify({'status':200})
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
