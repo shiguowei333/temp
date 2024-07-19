@@ -132,6 +132,8 @@
             })
             console.log(htmlStr)
             document.querySelector('.bookList').innerHTML = htmlStr.join('')
+        }).catch(error => {
+            document.querySelector('.nullPage').style.display = 'block'
         })
         }
         showList()
