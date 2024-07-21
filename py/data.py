@@ -60,6 +60,13 @@ book_list = [{
 def get_books():
     return jsonify(book_list)
 
+@app.route('/api/getBook', methods=['GET'])
+def get_book():
+    id = request.args.get('id')
+    for item in book_list:
+        if(item['id'] == id):
+            return jsonify(item)
+
 i = 84730
 @app.route('/api/addBook', methods=['POST'])
 def add_book():
