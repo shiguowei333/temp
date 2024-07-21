@@ -83,9 +83,8 @@ def delete_book():
     for i in range(len(book_list)):
         if(book_list[i]['id'] == id):
             del book_list[i]
-            break
-    
-    return jsonify({'status':200})
+            break            
+    return jsonify({'status': 200,'msg': '新增成功'})
 
 
 @app.route('/api/updateBook', methods=['POST'])
