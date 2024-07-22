@@ -5,30 +5,28 @@
     <title>上传文件</title>
 </head>
 <body>
-    <input type="file" multiple="ture" name="file1">
+    <input type="file">
+    <br>
+    <img src="" alt="">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        document.querySelector('input').addEventListener('change', (e)=> {
-            console.dir(document.querySelector('input'))
-            const formData = new FormData()
-            let files = e.target.files
-            files = Array.from(files)
-           files.forEach((file) => {
-           formData.append("file", file);}
-           
-            
-)
+        document.querySelector('input').addEventListener('change', () => {
 
-        formData.append('abc','abcd')
-        formData.append('abc','abcd')
+            let formdata = new FormData()
+            let file = document.querySelector('input').files[0]
+            console.log(file)
+            formdata.append('file', file)
+            console.log(formdata)
             axios({
-                url: 'http://127.0.0.1:5000/api/test',
                 method: 'POST',
-                data: formData,
-                Headers: { "Content-Type": "multipart/form-data" }
+                url: 'http://127.0.0.1:5000/api/upload',
+                data: formdata
+            }).then(response => {
+                document.querySelector('img').src = `http://127.0.0.1:5000${response.data.filePath}`
             })
-        }
-        )
+        })
+
+
         
     </script>
 </body>

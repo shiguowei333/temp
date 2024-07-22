@@ -111,7 +111,11 @@ def update_book():
     print(book_list)
     return jsonify({'status':200})
 
-
+@app.route('/api/upload', methods=['POST'])
+def upload():
+    file = request.files['file']
+    file.save("./static/" + file.filename)
+    return jsonify({'status':200,'filePath':'/static/'+file.filename})
 
 if __name__ == '__main__':
     app.run(debug=True)
