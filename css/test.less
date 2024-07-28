@@ -1,0 +1,16 @@
+@color: pink;
+
+.outer {
+    background-color: black;
+    height: 200px;
+    width: 200px;
+    .inner {
+        height: 50px;
+        width: 50px;
+        background-color: red;
+        &:hover {
+            background-color: @color;
+        }
+    }
+    
+}

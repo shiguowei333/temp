@@ -1,0 +1,13 @@
+.outer {
+  background-color: black;
+  height: 200px;
+  width: 200px;
+}
+.outer .inner {
+  height: 50px;
+  width: 50px;
+  background-color: red;
+}
+.outer .inner:hover {
+  background-color: pink;
+}
