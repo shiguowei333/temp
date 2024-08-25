@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    
+</head>
+<body>
+    <div id="root">
+        单向数据绑定：<input type="text" v-bind:value="name">
+        双向数据绑定：<input type="text" v-model:value="name">
+        <button v-on:click="showInfo">点我提示信息</button>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'Vue'
+            },
+            methods: {
+                showInfo() {
+                    console.log(123)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
