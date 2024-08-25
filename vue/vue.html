@@ -8,9 +8,11 @@
 </head>
 <body>
     <div id="root">
-        单向数据绑定：<input type="text" v-bind:value="name">
+        <!-- 单向数据绑定：<input type="text" v-bind:value="name">
         双向数据绑定：<input type="text" v-model:value="name">
-        <button v-on:click="showInfo">点我提示信息</button>
+        <button v-on:click="showInfo">点我提示信息</button> -->
+        <h2>今天天气很{{info}},{{x}}</h2>
+        <button @click="changeWeather">切换天气</button>
     </div>
 
     <script type="text/javascript">
@@ -18,11 +20,18 @@
         new Vue({
             el: '#root',
             data: {
-                name: 'Vue'
+                x: 1,
+                ishost: true
             },
             methods: {
-                showInfo() {
-                    console.log(123)
+                changeWeather() {
+                    this.ishost = !this.ishost
+                    this.x++
+                }
+            },
+            computed: {
+                info() {
+                    return this.ishost ? '炎热' : '凉爽'
                 }
             }
         })
