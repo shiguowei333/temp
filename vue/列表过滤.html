@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>列表渲染</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>人员列表</h2>
+        <input type="text" placeholder="请输入名字" v-model="keyWord">
+        <ul>
+            <li v-for="p in searchPersons" ::key="p.id">{{p.name}}-{{p.age}}</li>
+        </ul>
+    </div>
+    <script>
+        Vue.config.productionTip = false
+        new Vue({
+            el: '#root',
+            data: {
+                persons:[
+                    {id:'001',name: '马冬梅', age: 18},
+                    {id:'002',name: '周冬雨', age: 19},
+                    {id:'003',name: '周杰伦', age: 20},
+                    {id:'004',name: '梅花十三', age: 21}
+                ],
+                keyWord: ''
+            },
+            computed: {
+                searchPersons() {
+                    return this.persons.filter(p => {
+                        return p.name.indexOf(this.keyWord) !== -1
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>
