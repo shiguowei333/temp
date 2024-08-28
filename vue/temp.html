@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>temp</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li>{{test.t.a}}</li>
+            <li>{{test.t.b}}</li>
+        </ul>
+        <button @click="ttt">对象转换</button>
+    </div>
+
+    <script>
+        vm = new Vue({
+            el: '#app',
+            data: {
+                test: {
+                    t: {
+                        a: '你',
+                        b: '好'
+                    },
+                    d:['c','d']
+                }
+            },
+            methods: {
+                ttt() {
+                    this.test.t = {
+                        a: 'a',
+                        b: 'b'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
