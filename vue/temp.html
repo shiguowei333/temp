@@ -12,6 +12,9 @@
             <li>{{test.t.b}}</li>
         </ul>
         <button @click="ttt">对象转换</button>
+        <div v-text="temp">
+            <div>你好</div>
+        </div>
     </div>
 
     <script>
@@ -24,7 +27,8 @@
                         b: '好'
                     },
                     d:['c','d']
-                }
+                },
+                temp: 'ab'
             },
             methods: {
                 ttt() {
