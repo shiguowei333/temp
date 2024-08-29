@@ -9,6 +9,9 @@
     <div id="app">
         <h2>当前的n值是：<span v-text="n"></span></h2>
         <h2>放大10倍的n值是：<span v-big="n"></span></h2>
+        <button @click='n++'>点我n+1</button>
+        <hr>
+        <input type="text" v-fbind="n">
     </div>
 
     <script>
@@ -20,6 +23,18 @@
             directives: {
                 big(element,binding) {
                     element.innerHTML = binding.value * 10
+                },
+                fbind: {
+                    bind(element,binding) {
+                        element.value = binding.value
+                    },
+                    inserted(element) {
+                        element.focus()
+                    },
+                    update(element,binding) {
+                        element.value = binding.value
+                        element.focus()
+                    }
                 }
             }
         })
