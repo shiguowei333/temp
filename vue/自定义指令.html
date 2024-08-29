@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>当前的n值是：<span v-text="n"></span></h2>
+        <h2>放大10倍的n值是：<span v-big="n"></span></h2>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                n: 13
+            },
+            directives: {
+                big(element,binding) {
+                    element.innerHTML = binding.value * 10
+                }
+            }
+        })
+    </script>
+</body>
+</html>
