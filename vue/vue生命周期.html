@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue生命周期</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2 :style="{opacity}">欢迎学习Vue</h2>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                opacity: 1
+            }
+        })
+    </script>
+</body>
+</html>
