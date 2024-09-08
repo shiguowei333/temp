@@ -52,11 +52,15 @@
       },
       data() {
         return {
-          events: [
-            { id: '001', content: '吃饭', completed: false },
-            { id: '002', content: '睡觉', completed: false },
-            { id: '003', content: '敲代码', completed: true },
-          ]
+          events: JSON.parse(localStorage.getItem('events')) || []
+        }
+      },
+      watch: {
+        events: {
+          deep: true,
+          handler(value) {
+            localStorage.setItem('events',JSON.stringify(value))
+          }
         }
       }
     }
