@@ -2,8 +2,8 @@
   <div id="app">
     <div class="todo-container">
       <div class="todo-wrap">
-        <MyHeader></MyHeader>
-        <MyList></MyList>
+        <MyHeader :addEvent='addEvent'></MyHeader>
+        <MyList :events='events'></MyList>
         <MyFooter></MyFooter>
       </div>
     </div>
@@ -21,6 +21,20 @@
         MyHeader,
         MyList,
         MyFooter
+      },
+      methods: {
+        addEvent(e) {
+          this.events.unshift(e)
+        }
+      },
+      data() {
+        return {
+          events: [
+            { id: '001', content: '吃饭', completed: false },
+            { id: '002', content: '睡觉', completed: false },
+            { id: '003', content: '敲代码', completed: true },
+          ]
+        }
       }
     }
 </script>
@@ -66,5 +80,9 @@
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px
+  }
+
+  input[type="checkbox"] {
+    cursor: pointer;
   }
 </style>

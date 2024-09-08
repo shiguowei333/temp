@@ -1,12 +1,26 @@
 <template>
     <div class="todo-header">
-      <input type="text" placeholder="请输入你的任务名称，按回车键确认"/>
+      <input type="text" placeholder="请输入你的任务名称，按回车键确认" v-on:keyup.enter='add' v-model="content"/>
     </div>
 </template>
 
 <script>
+    import {nanoid} from 'nanoid'
     export default {
-        name: 'MyHeader'
+        name: 'MyHeader',
+        data() {
+            return {
+                content: ''
+            }
+        },
+        props: ['addEvent'],
+        methods: {
+            add() {
+                if(!this.content) return alert('输入不能为空')
+                this.addEvent({id: nanoid(), content: this.content, completed: false })
+                this.content = ''
+            }
+        }
     }
 </script>
 

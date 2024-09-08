@@ -1,9 +1,6 @@
 <template>
     <ul class="todo-main">
-      <MyItem></MyItem>
-      <MyItem></MyItem>
-      <MyItem></MyItem>
-      <MyItem></MyItem>
+      <MyItem v-for='event in events' :key="event.id" :event='event'></MyItem>
     </ul>
 </template>
 
@@ -14,7 +11,8 @@
         name: 'MyList',
         components: {
             MyItem
-        }
+        },
+        props: ['events']
     }
 </script>
 
