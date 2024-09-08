@@ -3,8 +3,8 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <MyHeader :addEvent='addEvent'></MyHeader>
-        <MyList :events='events'></MyList>
-        <MyFooter></MyFooter>
+        <MyList :events='events' :changeStatus='changeStatus' :deleteEvent='deleteEvent'></MyList>
+        <MyFooter :events='events' :makeAppAll='makeAppAll' :clearAll='clearAll'></MyFooter>
       </div>
     </div>
   </div>
@@ -25,6 +25,29 @@
       methods: {
         addEvent(e) {
           this.events.unshift(e)
+        },
+        changeStatus(id) {
+          this.events.forEach(e => {
+            if(e.id === id) e.completed = !e.completed
+          })
+        },
+        deleteEvent(id,content) {
+          if(confirm(`确定删除${content}吗`)) {
+            this.events = this.events.filter(e => e.id !== id)
+          }
+        },
+        makeAppAll(status) {
+          console.log(status)
+          this.events.forEach(e => {
+            e.completed = status
+          })
+        },
+        clearAll() {
+          if(confirm(`确定删除勾选的数据吗`)) {
+            this.events = this.events.filter(e => {
+              return e.completed === false
+            })
+          }
         }
       },
       data() {

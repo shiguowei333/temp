@@ -1,17 +1,17 @@
 <template>
     <li>
       <label>
-        <input type="checkbox" :checked='event.completed'/>
+        <input type="checkbox" :checked='event.completed' @click="changeStatus(event.id)"/>
         <span>{{event.content}}</span>
       </label>
-      <button class="btn btn-danger" style="display: none">删除</button>
+      <button class="btn btn-danger" @click='deleteEvent(event.id,event.content)'>删除</button>
     </li>
 </template>
 
 <script>
     export default {
         name: 'MyItem',
-        props: ['event']
+        props: ['event','changeStatus','deleteEvent']
     }
 </script>
 
@@ -48,5 +48,13 @@
 
     li:last-child {
         border-bottom: none;
+    }
+
+    li:hover {
+        background-color: #ddd;
+    }
+
+    li:hover button {
+        display: block;
     }
 </style>
