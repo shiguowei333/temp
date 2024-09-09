@@ -2,9 +2,9 @@
   <div id="app">
     <div class="todo-container">
       <div class="todo-wrap">
-        <MyHeader :addEvent='addEvent'></MyHeader>
+        <MyHeader @addEvent='addEvent'></MyHeader>
         <MyList :events='events' :changeStatus='changeStatus' :deleteEvent='deleteEvent'></MyList>
-        <MyFooter :events='events' :makeAppAll='makeAppAll' :clearAll='clearAll'></MyFooter>
+        <MyFooter :events='events' @makeAppAll='makeAppAll' @clearAll='clearAll'></MyFooter>
       </div>
     </div>
   </div>
@@ -37,7 +37,6 @@
           }
         },
         makeAppAll(status) {
-          console.log(status)
           this.events.forEach(e => {
             e.completed = status
           })

@@ -13,11 +13,10 @@
                 content: ''
             }
         },
-        props: ['addEvent'],
         methods: {
             add() {
                 if(!this.content) return alert('输入不能为空')
-                this.addEvent({id: nanoid(), content: this.content, completed: false })
+                this.$emit('addEvent', {id: nanoid(), content: this.content, completed: false })
                 this.content = ''
             }
         }

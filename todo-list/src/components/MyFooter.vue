@@ -6,14 +6,19 @@
       <span>
         <span>已完成：{{completedNum}}</span> / 全部{{total}}
       </span>
-      <button class="btn btn-danger" @click='clearAll()'>清除已完成任务</button>
+      <button class="btn btn-danger" @click='clear()'>清除已完成任务</button>
     </div>
 </template>
 
 <script>
     export default {
         name: 'MyFooter',
-        props: ['events','makeAppAll','clearAll'],
+        props: ['events'],
+        methods: {
+            clear() {
+                this.$emit('clearAll')
+            }
+        },
         computed: {
             total() {
                 return this.events.length
@@ -26,8 +31,7 @@
                     return this.total > 0 && this.total === this.completedNum
                 },
                 set(status) {
-                    console.log('1')
-                    this.makeAppAll(status)
+                    this.$emit('makeAppAll', status)
                 }
             }
         }
