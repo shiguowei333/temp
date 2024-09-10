@@ -1,6 +1,6 @@
 <template>
     <ul class="todo-main">
-      <MyItem v-for='event in events' :key="event.id" :event='event' :changeStatus='changeStatus' :deleteEvent='deleteEvent'></MyItem>
+      <MyItem v-for='event in events' :key="event.id" :event='event'></MyItem>
     </ul>
 </template>
 
@@ -12,7 +12,7 @@
         components: {
             MyItem
         },
-        props: ['events','changeStatus','deleteEvent']
+        props: ['events']
     }
 </script>
 

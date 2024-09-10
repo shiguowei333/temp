@@ -1,17 +1,17 @@
 <template>
     <li>
       <label>
-        <input type="checkbox" :checked='event.completed' @click="changeStatus(event.id)"/>
+        <input type="checkbox" :checked='event.completed' @click="$bus.$emit('changeStatus',event.id)"/>
         <span>{{event.content}}</span>
       </label>
-      <button class="btn btn-danger" @click='deleteEvent(event.id,event.content)'>删除</button>
+      <button class="btn btn-danger" @click="$bus.$emit('deleteEvent',event.id,event.content)">删除</button>
     </li>
 </template>
 
 <script>
     export default {
         name: 'MyItem',
-        props: ['event','changeStatus','deleteEvent']
+        props: ['event']
     }
 </script>
 

@@ -3,7 +3,7 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <MyHeader @addEvent='addEvent'></MyHeader>
-        <MyList :events='events' :changeStatus='changeStatus' :deleteEvent='deleteEvent'></MyList>
+        <MyList :events='events'></MyList>
         <MyFooter :events='events' @makeAppAll='makeAppAll' @clearAll='clearAll'></MyFooter>
       </div>
     </div>
@@ -61,6 +61,14 @@
             localStorage.setItem('events',JSON.stringify(value))
           }
         }
+      },
+      mounted() {
+        this.$bus.$on('changeStatus',this.changeStatus),
+        this.$bus.$on('deleteEvent',this.deleteEvent)
+      },
+      beforDestroy() {
+        this.$bus.$off('changeStatus'),
+        this.$bus.$off('deleteEvent')
       }
     }
 </script>
