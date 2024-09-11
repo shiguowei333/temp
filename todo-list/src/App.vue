@@ -11,6 +11,7 @@
 </template>
 
 <script>
+    import pubsub from 'pubsub-js'
     import MyHeader from './components/MyHeader'
     import MyList from './components/MyList'
     import MyFooter from './components/MyFooter'
@@ -31,9 +32,9 @@
             if(e.id === id) e.completed = !e.completed
           })
         },
-        deleteEvent(id,content) {
-          if(confirm(`确定删除${content}吗`)) {
-            this.events = this.events.filter(e => e.id !== id)
+        deleteEvent(_,msg) {
+          if(confirm(`确定删除${msg[1]}吗`)) {
+            this.events = this.events.filter(e => e.id !== msg[0])
           }
         },
         makeAppAll(status) {
@@ -64,11 +65,11 @@
       },
       mounted() {
         this.$bus.$on('changeStatus',this.changeStatus),
-        this.$bus.$on('deleteEvent',this.deleteEvent)
+        this.pubId = pubsub.subscribe('deleteEv',this.deleteEvent)
       },
       beforDestroy() {
         this.$bus.$off('changeStatus'),
-        this.$bus.$off('deleteEvent')
+        pubsub.unsubscribe(this.pubId)
       }
     }
 </script>

@@ -4,14 +4,20 @@
         <input type="checkbox" :checked='event.completed' @click="$bus.$emit('changeStatus',event.id)"/>
         <span>{{event.content}}</span>
       </label>
-      <button class="btn btn-danger" @click="$bus.$emit('deleteEvent',event.id,event.content)">删除</button>
+      <button class="btn btn-danger" @click="deleteEvent">删除</button>
     </li>
 </template>
 
 <script>
+    import pubsub from 'pubsub-js'
     export default {
         name: 'MyItem',
-        props: ['event']
+        props: ['event'],
+        methods: {
+            deleteEvent() {
+                pubsub.publish('deleteEv',[this.event.id,this.event.content])
+            }
+        }
     }
 </script>
 
