@@ -21,6 +21,9 @@ const mutations = {
     },
     JIAN(state,value) {
         state.sum -= value
+    },
+    addPerson(state,personObj) {
+        state.personList.unshift(personObj)
     }
 }
 const state = {

@@ -11,6 +11,8 @@
 
 <script>
 import {mapState} from 'vuex'
+import {nanoid} from 'nanoid'
+
 export default {
     name: 'PersonList',
     data() {
@@ -23,7 +25,9 @@ export default {
     },
     methods: {
       add() {
-        
+        const personObj = {id: nanoid(),name:this.name}
+        this.name = ''
+        this.$store.commit('addPerson',personObj)
       }
     }
 }
